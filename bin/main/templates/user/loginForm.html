@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layout}" lang="en">
+<th:block layout:fragment="content">
+  <link rel="stylesheet" th:href="@{/css/user/loginForm.css}"/>
+  <script th:src="@{/js/user/loginForm.js}" defer></script>
+  <main>
+    <section id="login" class="section">
+      <h1 class="section__title">・Login・</h1>
+      <div class="login__container">
+        <div class="login__left">
+            <button class="login__btn-google" onclick="location.href='/oauth2/authorization/google'"><i class="fa-brands fa-google"></i> <span
+                                       th:text="#{label.login.google}"></span></button>
+        </div>
+        <div class="login__dividingline"></div>
+        <div class="login__right">
+          <form class="login__form" action="/users/login"  method="post" th:object="${user}">
+            <section th:if="${#fields.hasGlobalErrors()}">
+              <p class="global-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+            </section>
+            <label th:for="userEmail" th:text="#{label.user.userEmail}"></label>
+            <input type="email" th:field="*{userEmail}" th:errorclass="field-error">
+            <div th:errors="*{userEmail}"></div>
+
+            <label th:for="userPwd" th:text="#{label.user.userPwd}"></label>
+            <input type="password" th:field="*{userPwd}" th:errorclass="field-error">
+            <div th:errors="*{userPwd}"></div>
+            <input type="submit" class="login__btn-basic" th:value="#{label.login}">
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+</th:block>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en " layout:decorate="~{common/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<th:block layout:fragment="content">
+    <link rel="stylesheet" th:href="@{/css/user/userUpdateForm.css}"/>
+    <script defer th:src="@{/js/user/userUpdateForm.js}"></script>
+    <main>
+        <section class="section" id="user">
+            <h1 class="section__title">・MyPage・</h1>
+            <div class="user__container">
+                <form action="/users/updateUser" class="user__form" method="post" th:object="${user}">
+                    <input th:field="*{userProvider}" type="hidden">
+                    <section th:if="${#fields.hasGlobalErrors()}">
+                        <p class="global-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+                    </section>
+                    <secion th:if="${updateUserSuccess}">
+                        <p th:text="#{msg.updateSuccess}"></p>
+                    </secion>
+                    <div class="user__userName">
+                        <label th:text="#{label.user.userName}"></label>
+                        <input th:field="*{userName}" type="text"/>
+                    </div>
+                    <div class="user__userPwd" th:if="${#strings.toString(user.userProvider)=='HOMEPAGE'}">
+                        <label th:text="#{label.user.userPwd}"></label>
+                        <input th:field="*{userPwd}" th:placeholder="#{label.userUpdate.userPwd}" type="password"/>
+                    </div>
+                    <div class="user__userNewPwd" th:if="${#strings.toString(user.userProvider)=='HOMEPAGE'}">
+                        <label th:text="#{label.user.userNewPwd}"></label>
+                        <input th:field="*{userNewPwd}" th:placeholder="#{label.userUpdate.userNewPwd}"
+                               type="password"/>
+                    </div>
+                    <div class="user__zipCode">
+                        <label th:text="#{label.user.address.zipCode}"></label>
+                        <input th:field="*{address.zipCode}" type="text"/>
+                    </div>
+                    <div class="user__address1">
+                        <label th:text="#{label.user.address.address1}"></label>
+                        <input th:field="*{address.address1}" type="text"/>
+                    </div>
+                    <div class="user__address2">
+                        <label th:text="#{label.user.address.address2}"></label>
+                        <input th:field="*{address.address2}" type="text"/>
+                    </div>
+                    <div class="user__btns">
+                        <a class="goback__btn" href="javascript:history.back();" th:text="#{label.goBack}"></a>
+                        <input class="user__user__btn" th:value="#{label.update}" type="submit">
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+</th:block>
+</html>

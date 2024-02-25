@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en " layout:decorate="~{common/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<th:block layout:fragment="content">
+    <link rel="stylesheet" th:href="@{/css/order/orderForm.css}"/>
+    <script defer th:src="@{/js/order/orderForm.js}"></script>
+    <!--  <link rel="stylesheet" th:href="@{/css/index.css}"/>-->
+    <main>
+        <section class="section" id="order">
+            <h1 class="section__title">・Order・</h1>
+            <form action="/orders/placeAnOrder" class="order__form" method="post" th:object="${order}">
+                <section class="order__msg" th:if="${#fields.hasGlobalErrors()}">
+                    <p class="global-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+                </section>
+                <table class="order__options">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th th:text="#{label.productName}"></th>
+                        <th th:text="#{label.optionName}"></th>
+                        <th th:text="#{label.price}"></th>
+                        <th th:text="#{label.quantity}"></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="orderProduct, rowStat1 : *{orderProducts}">
+                    <input th:field="*{orderProducts[__${rowStat1.index}__].product.id}"
+                           type="hidden"
+                    />
+                    <tr th:class="'orderProducts'+__${rowStat1.index}__+' orderProductOptions'+__${rowStat2.index}__"
+                        th:each="orderProductOption, rowStat2 : *{orderProducts[__${rowStat1.index}__].orderProductOptions}">
+                        <td class="order__option__productImage">
+                            <img
+                                    alt="img"
+                                    height="50px"
+                                    th:src="@{/products/productImage/{storedFileName}(storedFileName =*{orderProducts[__${rowStat1.index}__].product.productOptions[__${rowStat2.index}__].productImages.get(0).storedFileName})}"
+                                    width="50px"/>
+                        </td>
+                        <td class="order__product__productName">
+                            <p th:text="*{orderProducts[__${rowStat1.index}__].product.productName}"></p>
+                        </td>
+                        <td class="order__option__optionName">
+                            <p th:text="*{orderProducts[__${rowStat1.index}__].orderProductOptions[__${rowStat2.index}__].orderOptionName}"></p>
+                            <input th:field="*{orderProducts[__${rowStat1.index}__].orderProductOptions[__${rowStat2.index}__].orderOptionNum}"
+                                   type="hidden"
+                            />
+                            <input th:field="*{orderProducts[__${rowStat1.index}__].orderProductOptions[__${rowStat2.index}__].orderOptionName}"
+                                   type="hidden"
+                            />
+                        </td>
+                        <td class="order__option__optionPrice">
+                            <p th:text="*{orderProducts[__${rowStat1.index}__].orderProductOptions[__${rowStat2.index}__].orderOptionPrice}"></p>
+                            <input th:field="*{orderProducts[__${rowStat1.index}__].orderProductOptions[__${rowStat2.index}__].orderOptionPrice}"
+                                   type="hidden"
+                            />
+                        </td>
+                        <td class="order__option__optionQuantity">
+                            <select
+                                    th:field="*{orderProducts[__${rowStat1.index}__].orderProductOptions[__${rowStat2.index}__].orderOptionQuantity}">
+                                <option
+                                        th:each="i : ${#numbers.sequence(0, order.orderProducts[__${rowStat1.index}__].product.productOptions[__${rowStat2.index}__].optionQuantity)}"
+                                        th:text="${i}" th:value="${i}"></option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="order__option__delete"
+                                    th:onclick="'deleteOrderOption('+${rowStat1.index}+','+ ${rowStat2.index}+')'"
+                                    th:text="#{label.delete}"
+                                    type="button"></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="order__total">
+                    <p th:text="#{label.totalPrice}"></p>
+                    <p class="order__total__price"></p>
+                </div>
+                <div class="delivery__form">
+                    <div class="delivery__input">
+                        <label th:text="#{label.user.userEmail}"></label>
+                        <div class="delivery__userEmail">
+                            <input th:errorclass="field-error" th:field="*{orderUserEmail}" type="email"/>
+                            <div class="field-error" th:errors="*{orderUserEmail}"></div>
+                        </div>
+                    </div>
+                    <div class="delivery__input">
+                        <label th:text="#{label.user.userName}"></label>
+                        <div class="delivery__userName">
+                            <input th:errorclass="field-error" th:field="*{orderUserName}"
+                                   type="text">
+                            <div class="field-error" th:errors="*{orderUserName}"></div>
+                        </div>
+                    </div>
+                    <div class="delivery__input">
+                        <label th:text="#{label.user.address.zipCode}"></label>
+                        <div class="delivery__zipCode">
+                            <input th:errorclass="field-error" th:field="*{orderAddress.zipCode}" type="text"/>
+                            <div class="field-error" th:errors="*{orderAddress.zipCode}"></div>
+                        </div>
+                    </div>
+                    <div class="delivery__input">
+                        <label th:text="#{label.user.address.address1}"></label>
+                        <div class="delivery__address1">
+                            <input th:errorclass="field-error" th:field="*{orderAddress.address1}" type="text"/>
+                            <div class="field-error" th:errors="*{orderAddress.address1}"></div>
+                        </div>
+                    </div>
+                    <div class="delivery__input">
+                        <label th:text="#{label.user.address.address2}"></label>
+                        <div class="delivery__address2">
+                            <input th:errorclass="field-error" th:field="*{orderAddress.address2}" type="text"/>
+                            <div class="field-error" th:errors="*{orderAddress.address2}"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order__btns">
+                    <a class="goback__btn" th:href="'/products/'+${order.orderProducts.get(0).product.id}"
+                       th:text="#{label.goBack}"></a>
+                    <input class="order__btn" th:value="#{label.order}" type="submit"
+                    >
+                </div>
+            </form>
+        </section>
+    </main>
+</th:block>
+</html>

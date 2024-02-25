@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layout}" lang="en ">
+<th:block layout:fragment="content">
+  <link rel="stylesheet" th:href="@{/css/user/userUpdateForm.css}"/>
+  <script th:src="@{/js/user/userUpdateForm.js}" defer></script>
+  <main>
+    <section id="user" class="section">
+      <h1 class="section__title">・MyPage・</h1>
+      <div class="user__container">
+        <form class="user__form" action="/users/updateUser" method="post" th:object="${user}">
+          <div class="user__userInput">
+            <label th:text="#{label.user.userEmail}"></label>
+            <input type="email" th:field="*{userEmail}"/>
+          </div>
+          <div class="user__userName">
+            <label th:text="#{label.user.userName}"></label>
+            <input type="text" th:field="*{userName}"/>
+          </div> 
+          <div class="user__userPwd" th:if="${#strings.toString(user.userProvider)=='HOMEPAGE'}">
+            <label th:text="#{label.user.userPwd}"></label>
+            <input type="text" th:field="*{userPwd}" th:placeholder="#{label.userUpdate.userPwd}"/>
+          </div>
+          <div class="user__userNewPwd" th:if="${#strings.toString(user.userProvider)=='HOMEPAGE'}">
+            <label th:text="#{label.user.userNewPwd}"></label>
+            <input type="text" th:field="*{userNewPwd}"
+                   th:placeholder="#{label.userUpdate.userNewPwd}"/>
+          </div>
+          <div class="user__zipCode">
+            <label th:text="#{label.user.address.zipCode}"></label>
+            <input type="text" th:field="*{address.zipCode}"/>
+          </div>
+          <div class="user__address1">
+            <label th:text="#{label.user.address.address1}"></label>
+            <input type="text" th:field="*{address.address1}"/>
+          </div>
+          <div class="user__address2">
+            <label th:text="#{label.user.address.address2}"></label>
+            <input type="text" th:field="*{address.address2}"/>
+          </div>
+          <div class="user__btns">
+            <a href="javascript:history.back();" class="goback__btn" th:text="#{label.goBack}"></a>
+            <input type="submit" class="user__user__btn" th:value="#{label.update}"
+            >
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</th:block>
+</html>

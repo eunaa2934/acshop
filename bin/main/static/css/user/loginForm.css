@@ -1,0 +1,89 @@
+label, input{
+    margin: 0.5vh;
+}
+
+
+.login__container {
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+    width: 70vw;
+    height: 50vh;
+    margin: 5vh auto;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+
+
+.login__btn-google {
+    width: 20vw;
+    height: 6vh;
+    background-color: var(--color-blue1);
+    color: var(--color-white1);
+}
+
+.login__dividingline{
+    width:1px;
+    height:40vh;
+    background-color: black;
+}
+
+.login__form{
+    display:flex;
+    flex-direction: column;
+}
+
+.email__send__btn{
+    width: 16vw;
+    height: 4vh;
+    margin:auto;
+}
+
+.email__verify{
+    display:none;
+}
+
+.login__btn-basic {
+    margin: auto;
+    width: 20vw;
+    height: 5vh;
+}
+
+
+.login__btn-basic:hover {
+}
+
+.login__form > input {
+    display: block;
+    width: 20vw;
+    height: 5vh;
+}
+
+@media screen and (max-width: 800px) {
+
+    .login__container {
+        display: flex;
+        flex-direction: column;
+        height: 60vh;
+    }
+
+    .login__left {
+        text-align: center;
+        margin-bottom: 2vh;
+        /*height: 20vh;*/
+    }
+
+    .login__btn-google {
+        width: 50vw;
+    }
+
+    .login__dividingline {
+        width: 80%;
+        height: 1px;
+    }
+    .login__form > input{
+        width: 50vw;
+    }
+}

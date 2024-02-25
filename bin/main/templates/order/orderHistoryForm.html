@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layout}" lang="en ">
+<th:block layout:fragment="content">
+  <link rel="stylesheet" th:href="@{/css/order/orderHistoryForm.css}"/>
+  <script th:src="@{/js/order/orderHistoryForm.js}" defer></script>
+  <main>
+    <section id="order__history" class="section">
+      <h1 class="section__title">・Order History・</h1>
+      <p th:text="#{label.orderCancelNotice}"></p>
+      <div class="orders" th:each="order : ${orders}">
+        <div class="order">
+          <p th:text="#{label.order.id}"></p>
+          <p class="order__id" th:text="${order.id}"></p>
+          <p class="order__product__name" th:text="${order.orderProducts.get(0).product.productName}"></p>
+          <div class="order__status" th:switch="${#strings.toString(order.orderStatus)}">
+            <p th:case="'PREPARING_FOR_PRODUCT'" th:text="#{label.orderStatus.preparingForProduct}"></p>
+            <p th:case="'ORDER_CANCELLED'" th:text="#{label.orderStatus.orderCancelled}"></p>
+          </div>
+        </div>
+        <ol class="order__options">
+          <li class="order__option" th:each="orderProductOption : ${order.orderProducts.get(0).orderProductOptions}">
+            <p class="order__option__name" th:text="${orderProductOption.orderOptionName}"></p>
+            <p class="order__option__quantity" th:text="${orderProductOption.orderOptionQuantity}"></p>
+          </li>
+        </ol>
+        <input type="button" class="order__cancel__btn" th:if="${#strings.toString(order.orderStatus) == 'PAYMENT_PENDING'
+              or #strings.toString(order.orderStatus) == 'PREPARING_FOR_PRODUCT'}"
+                th:value="#{label.orderCancel}"
+                th:onclick="'orderCancel('+${order.id}+',\''+#{label.confirmmsg.orderCancel}+'\')'">
+      </div>
+    </section>
+  </main>
+</th:block>
+</html>
+</body>
+</html>

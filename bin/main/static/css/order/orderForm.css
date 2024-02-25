@@ -1,0 +1,53 @@
+.order__form{
+  margin: 6vh 0;
+  display: flex;
+flex-direction: column;
+  align-items: center;
+}
+
+.order__msg {
+  padding: 0 2vw;
+}
+
+th{
+  text-align: center;
+  font-size: 1rem;
+}
+
+td{
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 0 2vw;
+}
+
+.order__total {
+  display: flex;
+  justify-content: right;
+  width: 40%;
+
+}
+
+.order__total > p{
+  width: 50%;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.order__btns{
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media screen and (max-width: 800px) {
+  th{
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  td{
+    text-align: center;
+    font-size: 1rem;
+    padding: 1vw;
+  }
+}

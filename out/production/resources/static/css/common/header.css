@@ -1,0 +1,88 @@
+@import url("common.css");
+
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-white1);
+  padding: 1vh 2vh;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+}
+
+.header__logo__img {
+  width: 4vh;
+  height: 4vh;
+  margin-right: 2vh;
+}
+
+.header__title {
+  font-size: 1.8rem;
+}
+
+.header__nav__btn {
+  display: none;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+}
+
+.header__menus {
+  display: flex;
+}
+
+.header__menus li {
+  list-style-type: none;
+}
+
+.header__menu,
+.header__language__btn {
+  white-space: nowrap;
+  width: 8vw;
+  height: 4vh;
+  padding: 0 2vw;
+  font-size: 1rem;
+}
+
+.header__menu:hover,
+.header__language__btn:hover {
+  border: solid 1px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.header__language__btn {
+  background-color: var(--color-white1);
+}
+
+.pdf__description {
+  background-color: var(--color-orage1);
+  font-size: 0.8rem;
+  width: 8rem;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  margin: 0 2rem;
+}
+
+.pdf__description:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 800px) {
+  header {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .header__title {
+    font-size: 1.3rem;
+  }
+}

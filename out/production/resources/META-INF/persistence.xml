@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             version="2.2"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+    <persistence-unit name="acshop">
+        <!-- 사용하는 Entity들을 모두 작성한다 -->
+        <class>com.naeun2934.acshop.product.ProductCategory</class>
+        <class>com.naeun2934.acshop.product.Product</class>
+        <class>com.naeun2934.acshop.seller.Seller</class>
+        <class>com.naeun2934.acshop.product.ProductOption</class>
+        <class>com.naeun2934.acshop.order.OrderProductOption</class>
+        <class>com.naeun2934.acshop.product.ProductImage</class>
+        <class>com.naeun2934.acshop.order.OrderProduct</class>
+        <class>com.naeun2934.acshop.user.User</class>
+        <class>com.naeun2934.acshop.order.Order</class>
+        <properties>
+            <!-- 필수 속성 -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/acshop"/>
+            <property name="javax.persistence.jdbc.user" value="naeun"/>
+            <property name="javax.persistence.jdbc.password" value="naeun"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+            <!-- 옵션 -->
+            <!--            <property name="hibernate.implicit_naming_strategy" value="org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl"/>-->
+            <property name="hibernate.physical_naming_strategy"
+                      value="org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl"/>
+            <!--            <property name="hibernate.physical_naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>-->
+            <!--            <property name="hibernate.physical_naming_strategy" value="org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl"/>-->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+            <!-- 데이터를 얼만큼(size)모아서 커밋할지 -->
+            <property name="hibernate.jdbc.batch_size" value="10"/>
+            <!-- 자동 테이블 생성, 개발환경에서만 쓸 것 -->
+            <!-- create : 기존 테이블 삭제 후 다시 생성 -->
+            <!-- create-drop : create와 같으나 종료시점에 table을 drop함 -->
+            <!-- update : 변경분만 반영 -->
+            <!-- validate : Entity와 Table이 정상 mapping 되었는지만 확인 -->
+            <!-- none : 사용하지 않음 -->
+            <!--            <property name="hibernate.hbm2ddl.auto" value="create"/>-->
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+        </properties>
+    </persistence-unit>
+</persistence>
