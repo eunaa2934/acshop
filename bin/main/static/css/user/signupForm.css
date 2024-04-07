@@ -1,0 +1,104 @@
+label, input {
+  margin: 0.5vh;
+}
+
+input, button {
+  display: block;
+  width: 20vw;
+  height: 5vh;
+}
+
+.signup__container {
+  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+  width: 80vw;
+  margin: 5vh auto;
+  padding: 5vh 0;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.signup__left {
+  text-align: center;
+}
+
+.login__btn-google {
+  width: 20vw;
+  height: 6vh;
+  background-color: var(--color-blue1);
+  color: var(--color-white1);
+}
+
+.singup__dividingline {
+  width: 1px;
+  height: 40vh;
+  background-color: black;
+}
+
+.signup__form {
+  display: flex;
+}
+
+.signup__msg {
+  padding: 0 2vw;
+}
+
+.signup__form__left, .signup__form__right {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  padding: 2vw;
+}
+
+.email__update__btn, .email__cancel__btn, .email__verify__result {
+  display: none;
+}
+
+
+.signup__btn-basic {
+  margin: auto;
+  width: 20vw;
+  height: 5vh;
+}
+
+.signup__btn-basic:hover {
+}
+
+@media screen and (max-width: 800px) {
+  input {
+    width: 50vw;
+  }
+
+  .signup__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .signup__left {
+    text-align: center;
+    margin-bottom: 2vh;
+  }
+
+  .login__btn-google {
+    width: 50vw;
+  }
+
+  .singup__dividingline {
+    width: 80%;
+    height: 1px;
+  }
+
+  .signup__form {
+    display: flex;
+    flex-direction: column;
+      align-items: center;
+  /*justify-content: center;*/
+  }
+
+  .signup__form__left, .signup__form__right{
+      align-items: center;
+  }
+
+
+}

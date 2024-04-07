@@ -1,0 +1,265 @@
+/* Global */
+:root {
+  /* Colors */
+  --color-white: #ffffff;
+  --color-black: #050a13;
+  --color-blue: #03e8f9;
+  --color-orage: #fd6413;
+  --color-gray: #1b1e26;
+  --color-beige: #d6ccc2;
+  --color-beige-light: #e1d7cc;
+  --color-brown: #4b3828;
+  --color-brown-dark: #251b14;
+  --color-gray: #c0bbb7;
+  --color-gray-dark: #9c9483;
+
+  /* App Colors */
+  --color-background: var(--color-white);
+  --color-primary: var(--color-beige);
+  --color-primary-variant: var(--color-beige-light);
+  --color-text: var(--color-brown);
+  --color-text-variant: var(--color-gray-dark);
+  --color-accent: var(--color-brown-dark);
+
+  /* Fonts */
+  --fonts-primary : "Zen Maru Gothic"
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fonts-primary), sans-serif;
+  color: var(--color-text);
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: var(--color-accent);
+}
+
+button {
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  font-family: --fonts-primary, sans-serif;
+  font-size: 1rem;
+}
+
+/* Common */
+#content {
+  height: 90%;
+  background: yellow;
+}
+
+.section {
+  padding: 2rem;
+  text-align: center;
+}
+
+.section__title {
+  color: var(--color);
+  font-size: 0.8rem;
+  text-align: left;
+  /* position: fixed; */
+}
+
+/* Style The Dropdown Button */
+.dropdown__btn {
+ /* background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+
+     display: flex;
+    justify-content: center;
+    padding: 8px;
+    gap: 2rem;
+    margin: 1.2rem;*/
+    cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown__content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown__content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown__content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown__content {
+  display: block;
+}
+
+/* .dropdown:hover .dropdown__btn {
+  background-color: #3e8e41;
+}*/
+
+/* Scroll 해도 상위에 고정하길 원하는 경우
+Sticky : 기존 위치를 차지하고 있다가 Scrolling이 발생할 때에만 고정된다.
+Fixed : 처음부터 기존의 문서 flow로부터 빠져나와있다.
+        그래서 투명하게만 처리해주면 배경색을 잘 볼 수 있다.
+*/
+
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  background-color: var(--color-background);
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.3rem;
+}
+
+.header__logo {
+  display: flex;
+  gap: 8px;
+}
+
+.header__logo__img {
+  width: 36px;
+  height: 36px;
+}
+
+.header__logo__title {
+  /* rem : 현재 브라우저의 기본 font사이즈의 1.8배를 함 */
+  font-size: 1.8rem;
+}
+.header__nav{
+    display:flex;
+}
+
+.header__menus {
+  display: flex;
+}
+
+.header__menu {
+  padding: 8px 16px;
+}
+
+.header__menu:hover {
+  /* outline : border와 같은 기능인데, 1px 만큼 밀리는 것이 없다. */
+  outline: 1px solid var(--color-accent);
+  border-radius: 4px;
+}
+
+.header__menu.active {
+  outline: 1px solid var(--color-accent);
+  border-radius: 4px;
+}
+
+.header__language{
+}
+
+.navigation {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+.navigation__menus {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 8px;
+}
+
+.home__sticky {
+  position: relative;
+  top: 30px;
+}
+
+.home__menus {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  gap: 2rem;
+  margin: 1.2rem;
+  cursor: pointer;
+}
+
+.home__menu:hover {
+  /* outline : border와 같은 기능인데, 1px 만큼 밀리는 것이 없다. */
+  outline: 1px solid var(--color-accent);
+  border-radius: 4px;
+}
+
+.home__menu.active {
+  outline: 1px solid var(--color-accent);
+  border-radius: 4px;
+}
+
+.home__products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* grid-template-rows: repeat(8, 1fr); */
+  gap: 1rem;
+}
+
+.home__product__img {
+  width: 100%;
+}
+
+.arrow-up {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  position: fixed;
+  bottom: 2.4rem;
+  right: 2.4rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 100%;
+  text-align: center;
+  padding: auto;
+}
+
+.arrow-up-i {
+  position: relative;
+  text-align: center;
+  top: 15%;
+}
+footer {
+  background-color: var(--color-primary-variant);
+  color: var(--color-white);
+  height:2rem;
+  width:100%;
+  position:sticky;
+  bottom:calc(100vh-2rem);
+}
+/* 그외 참고 */
+/* object-fit:cover = 원래 이미지의 비율 유지 */

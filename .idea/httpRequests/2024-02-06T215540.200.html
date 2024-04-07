@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- 1. 기본 설정 -->
+  <!-- 1.1. 문자열 인코딩을 UTF-8로 한다. -->
+  <meta charset="UTF-8"/>
+  <!-- 1.2. Microsoft Edge 브라우저와 호환이 가능하게 한다. -->
+  <meta http-equiv="X-UA-Compatible"
+        content="IE=e
+        dge"/>
+  <!-- 1.3. 기본적으로 디바이스 너비를 가득 채우도록 zoom 비율을 확대하지 않고 컨텐츠 사이즈를 그대로 가지고 가도록 설정 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accessory Shop</title>
+  <!-- 2.수동 설정-->
+  <!-- 2.1. 사이트에 대한 부가 설명, SEO를 고려해 작성하는 것이 좋다. -->
+  <meta
+      name="description"
+      content="naeun2934&#39;s personal accessory shopping mall"
+  />
+  <!-- 2.2. 작성자 -->
+  <meta author="author" content="naeun2934"/>
+  <!-- 2.3. favicon -->
+  <link
+      rel="shortcut icon"
+      href="/images/favicon.ico"
+      type="image/x-icon"
+  />
+  <!-- 4. Open Graph Data, 외부에 링크 공유시 사이트를 대표하는 이미지를 보여준다.-->
+  <meta property="og:title" content="Accessory Shop"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="배포 후 생성된 URL"/>
+  <meta property="og:image" content="배포 후 생성된 이미지 URL"/>
+  <!-- 5. Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400&display=swap"
+      rel="stylesheet"
+  />
+  <!-- 6. Font Awesome -->
+  <script src="https://kit.fontawesome.com/88b936c6da.js" crossorigin="anonymous"></script>
+  <!-- CSS와 자바스크립트 설정-->
+  <link rel="stylesheet" href="/css/common/common.css"/>
+  <!-- 참고로 아래와 같이 작성하면 브라우저는 js파일이 다 다운로드 될 때까지 기다렸다가 완료되면 html파일을 읽는다. -->
+  <!-- <script src="js/common.js"></script> -->
+  <!-- 때문에 나중에 다운로드 받아도 된다고 명시해두는 것이 좋다. (조금 더 성능이 좋아진다.)-->
+  <script src="/js/common.js" defer></script>
+</head>
+
+<body>
+
+<header>
+  <link rel="stylesheet" href="/css/common/header.css"/>
+  <!-- BEM : block__element--modifier -->
+  <!-- ex. cards, card__img, card__button--blue, 공통적이면 button 이라고만 해도 된다. -->
+  <!-- Box에 크게 의미가 있지않고, 단순 스타일링을 목적으로 하는 경우 div 태그 사용-->
+  <div class="header">
+    <div class="header__logo">
+      <img
+          class="header__logo__img"
+          src="/images/favicon.ico"
+          alt="logo"
+      />
+      <h1 class="header__logo__title"><a href="/">Accessory Shop</a></h1>
+    </div>
+    <nav class="header__nav">
+      <ul class="header__menus">
+
+
+        <li><a class="header__menu" href="/users/loginForm">로그인</a></li>
+        <li><a class="headerd__menu" href="/users/signupForm">회원가입</a></li>
+      </ul>
+      <div class="header__language dropdown">
+        <button class="header__language__btn dropdown__btn">언어</button>
+        <div class="dropdown__content">
+          <a href="/changeLanguage?language=ko">한국어</a>
+          <a href="/changeLanguage?language=ja">일본어</a>
+          <a href="/changeLanguage?language=en">영어</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <nav class="navigation">
+    <ul class="navigation__menus">
+      <li>
+        <a class="navigation__menu" href="/">Home</a>
+      </li>
+      <li>
+        <a class="navigation__menu" href="#categories">Categories</a>
+      </li>
+      <li><a class="navigation__menu" href="#events">Events</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+<link rel="stylesheet" href="/css/user/loginForm.css"/>
+<script src="/js/user/loginForm.js" defer></script>
+<main>
+  <section id="login" class="section">
+    <h1 class="section__title">로그인</h1>
+    <div class="login__container">
+      <div class="login__left">
+        <button class="login__btn-google" onclick="location.href='/oauth2/authorization/google'"><i
+            class="fa-brands fa-google"></i> <span>Google 로그인</span></button>
+      </div>
+      <div class="singup__dividingline"></div>
+      <div class="login__right">
+        <form class="login__form" action="/users/login" method="post">
+
+          <label for="userEmail">Email</label>
+          <input type="email" id="userEmail" name="userEmail" value="">
+
+
+          <label for="userPwd">비밀번호</label>
+          <input type="password" id="userPwd" name="userPwd" value="">
+
+
+          <!--            <input type="submit" class="login__btn-basic" th:value="#{label.login}">-->
+          <button type="submit">submit</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<footer>
+  <link rel="stylesheet" href="/css/common/footer.css"/>
+  <ul>
+    <li><a href="https://github.com/naeun2934/acshop" target="_blank">dd</a></li>
+    <li><p>naeun2934 - All rights reserved</p></li>
+  </ul>
+  <!-- Scroll To Top -->
+  <aside>
+    <a class="arrow-up" href="#home"
+    ><i class="arrow-up-i fa-solid fa-angles-up"></i
+    ></a>
+  </aside>
+</footer>
+
+</body>
+</html>

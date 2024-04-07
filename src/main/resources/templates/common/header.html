@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <th:block th:fragment="headerFragment">
+    <header>
+      <link rel="stylesheet" th:href="@{/css/common/header.css}" />
+      <script defer th:src="@{/js/common/header.js}"></script>
+      <div class="header__logo">
+        <img
+          alt="logo"
+          class="header__logo__img"
+          th:src="@{/images/favicon.ico}"
+        />
+        <h1 class="header__title"><a href="/">Accessory Shop</a></h1>
+        <a
+          class="pdf__description"
+          download="Acshop"
+          href="/pdf/ACShop.pdf"
+          th:text="#{label.pdfDescription}"
+        ></a>
+      </div>
+      <button class="header__nav__btn"><i class="fa-solid fa-bars"></i></button>
+      <nav class="header__nav">
+        <ul class="header__menus">
+          <!-- 로그인 전 표시항목 -->
+          <li th:if="${#authentication.principal == 'anonymousUser'}">
+            <a
+              class="header__menu"
+              href="/users/loginForm"
+              th:text="#{label.login}"
+            ></a>
+          </li>
+          <li th:if="${#authentication.principal == 'anonymousUser'}">
+            <a
+              class="header__menu"
+              href="/users/signupForm"
+              th:text="#{label.signup}"
+            ></a>
+          </li>
+          <!-- 로그인 후 표시항목-->
+          <li th:if="${#authentication.principal != 'anonymousUser'}">
+            <a
+              class="header__menu"
+              href="/orders/orderHistoryForm"
+              th:text="#{label.orderHistory}"
+            ></a>
+          </li>
+          <li th:if="${#authentication.principal != 'anonymousUser'}">
+            <a
+              class="header__menu"
+              href="/users/myPage"
+              th:text="#{label.myPage}"
+            ></a>
+          </li>
+          <li th:if="${#authentication.principal != 'anonymousUser'}">
+            <a
+              class="header__menu"
+              href="/users/logout"
+              th:text="#{label.logout}"
+            ></a>
+          </li>
+        </ul>
+        <div class="header__language dropdown">
+          <button class="header__language__btn dropdown__btn">Language</button>
+          <div class="dropdown__content">
+            <a
+              href="/changeLanguage?language=en"
+              th:text="#{language.english}"
+            ></a>
+            <a
+              href="/changeLanguage?language=ja"
+              th:text="#{language.japanese}"
+            ></a>
+            <a
+              href="/changeLanguage?language=ko"
+              th:text="#{language.korean}"
+            ></a>
+          </div>
+        </div>
+      </nav>
+    </header>
+  </th:block>
+</html>

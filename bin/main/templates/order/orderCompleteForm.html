@@ -1,0 +1,29 @@
+<!doctype html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{common/layout}"
+  lang="en "
+>
+  <th:block layout:fragment="content">
+    <link rel="stylesheet" th:href="@{/css/order/orderCompleteForm.css}" />
+    <script th:src="@{/js/order/orderCompleteForm.js}" defer></script>
+    <main>
+      <section id="order__complete" class="section">
+        <h1 class="section__title">・OrderComplete・</h1>
+        <div class="order__complete__container">
+          <div class="order__complete__msgs">
+            <p th:text="#{label.orderCompleteMsg}"></p>
+          </div>
+          <div class="order__complete__btns">
+            <a
+              href="/orders/orderCompleteForm"
+              th:text="#{label.goOrderHistory}"
+            ></a>
+            <a href="/" th:text="#{label.goHome}"></a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </th:block>
+</html>

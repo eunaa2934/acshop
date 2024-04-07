@@ -1,0 +1,10 @@
+POST http://localhost:8080/emails/sendEmail
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Cookie: JSESSIONID=46EB1F515FC5F3045DE1AAEE4FC2D536
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-02-06T215540.200.html
+
+###
+

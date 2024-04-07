@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{common/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<th:block layout:fragment="content">
+    <link rel="stylesheet" th:href="@{/css/user/signupForm.css}"/>
+    <script defer th:src="@{/js/user/signupForm.js}"></script>
+    <main>
+        <section class="section" id="signup">
+            <h1 class="section__title">・Signup・</h1>
+            <div class="signup__container">
+                <div class="signup__left">
+                    <button class="login__btn-google" onclick="location.href='/oauth2/authorization/google'"><i
+                            class="fa-brands fa-google"></i> <span
+                            th:text="#{label.login.google}"></span></button>
+                </div>
+                <div class="singup__dividingline"></div>
+                <div class="signup__right">
+                    <form action="/users/signup" method="post" th:object="${user}">
+                        <div class="alert alert-danger" role="alert" th:if="${error}">
+                            <p th:text="${error}"></p>
+                        </div>
+                        <div class="signup__form">
+                            <div class="signup__form__left">
+                                <label th:for="userEmail" th:text="#{label.user.userEmail}"></label>
+                                <input th:errorclass="field-error" th:field="*{userEmail}" type="email">
+                                <input id="userEmailBefore" type="hidden">
+                                <div th:errors="*{userEmail}"></div>
+                                <input class="email__send__btn" disabled th:value="#{label.sendVerifyEmail}"
+                                       type="button">
+                                <input class="email__update__btn" th:value="#{label.update}" type="button">
+                                <input class="email__cancel__btn" th:value="#{label.cancel}" type="button">
+                                <label th:for="emailCode" th:text="#{label.user.emailCode}"></label>
+                                <input disabled th:field="*{emailCode}" type="text">
+                                <input class="email__verify__btn" disabled th:value="#{label.confirm}" type="button">
+                                <input id="email__verify__success" th:value="#{alert.emailVerify.success}"
+                                       type="hidden">
+                                <input id="email__verify__fail" th:value="#{alert.emailVerify.fail}" type="hidden">
+                            </div>
+                            <div class="signup__form__right">
+                                <label th:for="userName" th:text="#{label.user.userName}"></label>
+                                <input th:errorclass="field-error" th:field="*{userName}" type="text">
+                                <div th:errors="*{userName}"></div>
+                                <label th:for="userPwd" th:text="#{label.user.userPwd}"></label>
+                                <input th:errorclass="field-error" th:field="*{userPwd}" type="password">
+                                <div th:errors="*{userPwd}"></div>
+                            </div>
+                        </div>
+                        <input class="signup__btn-basic" onclick="signup()" th:value="#{label.signup}" type="submit">
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+</th:block>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html
+  lang="en"
+  layout:decorate="~{common/layout}"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <th:block layout:fragment="content">
+    <link rel="stylesheet" th:href="@{/css/error/error.css}" />
+    <main>
+      <section class="section" id="error4xx">
+        <h1 class="section__title">・Error・</h1>
+        <div class="error__container">
+          <div class="error__msgs">
+            <p th:text="#{label.errorMsg5xx1}"></p>
+            <p th:text="#{label.errorMsg5xx2}"></p>
+          </div>
+          <div class="error__btns">
+            <a
+              class="goback__btn"
+              href="javascript:history.back();"
+              th:text="#{label.goBack}"
+            ></a>
+            <a href="/" th:text="#{label.goHome}"></a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </th:block>
+</html>

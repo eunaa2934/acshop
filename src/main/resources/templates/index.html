@@ -1,0 +1,62 @@
+<!doctype html>
+<html
+  lang="en "
+  layout:decorate="~{common/layout}"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <th:block layout:fragment="content">
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <script defer th:src="@{/js/index.js}"></script>
+    <main>
+      <section class="section" id="home">
+        <h1 class="section__title">・Home・</h1>
+        <!-- <p>Description</p> -->
+        <ul class="home__menus">
+          <li class="home__menu">
+            <a
+              class="home__menu__btn orderby__createdate active"
+              href="/"
+              th:text="#{label.orderBy.createDate}"
+            ></a>
+          </li>
+          <li class="home__menu">
+            <a
+              class="home__menu__btn orderby__views"
+              href="/?orderBy=views"
+              th:text="#{label.orderBy.views}"
+            ></a>
+          </li>
+        </ul>
+        <ul class="home__products">
+          <li class="home__product" th:each="product : ${products}">
+            <a th:href="@{/products/{productId}(productId=${product.id})}">
+              <!--              <img-->
+              <!--                alt="img"-->
+              <!--                class="home__product__img"-->
+              <!--                th:src="@{/products/productImage/{storedFileName}(storedFileName = ${product.productOptions.get(0).productImages.get(0).storedFileName})}"-->
+              <!--              />-->
+              <img
+                alt="img"
+                class="home__product__img"
+                th:src="@{/products/productImage/{storedFileName}(storedFileName = ${product.getProductOptions().get(0).getProductImages().get(0).getStoredFileName()})}"
+              />
+              <p
+                class="home__product__name"
+                th:text="${product.productName}"
+              ></p>
+              <ol class="home__product__options">
+                <li
+                  class="home__product__option"
+                  th:each="productOption : ${product.productOptions}"
+                >
+                  <p th:text="${productOption.optionName}"></p>
+                </li>
+              </ol>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </th:block>
+</html>

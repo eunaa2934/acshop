@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en " layout:decorate="~{common/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<th:block layout:fragment="content">
+    <link rel="stylesheet" th:href="@{/css/product/productDetailForm.css}"/>
+    <script defer th:src="@{/js/product/productDetailForm.js}"></script>
+    <main>
+        <section class="section" id="product" th:object="${orderProduct}">
+            <input th:field="*{product.id}" type="hidden">
+            <h1 class="section__title">・Product・</h1>
+            <div class="product__rates">
+                <i class="fa-regular fa-eye"></i>
+                <p class="product__views" th:text="*{product.views}"></p>
+            </div>
+            <div class="product__container">
+                <div class="product__left">
+                    <div class="product__pictures" th:classappend="'opt'+${option.optionNum}"
+                         th:each="option : *{product.productOptions}">
+                        <img alt="img" class="product__picture" th:each="productImage : ${option.productImages}"
+                             th:src="@{/products/productImage/{storedFileName}(storedFileName = ${productImage.storedFileName})}"/>
+                    </div>
+                </div>
+                <div class="product__right">
+                    <h2>Description & Details</h2>
+                    <div class="product__description"
+                         th:utext="${@markdownUtil.markdown(orderProduct.product.productDescription)}"></div>
+                    <form action="/orders/orderForm" class="order__form" method="get">
+                        <input th:field="*{product.id}" type="hidden">
+                        <table class="order__options">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Option Name</th>
+                                <th>Option Price</th>
+                                <th>Option Quantity</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="order__option" th:each="orderProductOption, rowStat : *{orderProductOptions}">
+                                <td class="order__option__productImage">
+                                    <img alt="img" height="50px"
+                                         th:src="@{/products/productImage/{storedFileName}(storedFileName = *{product.productOptions[__${rowStat.index}__].productImages.get(0).storedFileName})}"
+                                         width="50px"/>
+                                </td>
+                                <td class="order__option__optionName">
+                                    <p th:text="*{orderProductOptions[__${rowStat.index}__].orderOptionName}"></p>
+                                    <input th:field="*{orderProductOptions[__${rowStat.index}__].orderOptionNum}"
+                                           type="hidden"/>
+                                    <input th:field="*{orderProductOptions[__${rowStat.index}__].orderOptionName}"
+                                           type="hidden"/>
+                                </td>
+                                <td class="order__option__optionPrice">
+                                    <p th:text="*{orderProductOptions[__${rowStat.index}__].orderOptionPrice}"></p>
+                                    <input th:field="*{orderProductOptions[__${rowStat.index}__].orderOptionPrice}"
+                                           type="hidden"/>
+                                </td>
+                                <td class="order__option__optionQuantity">
+                                    <select th:field="*{orderProductOptions[__${rowStat.index}__].orderOptionQuantity}">
+                                        <option th:each="i : ${#numbers.sequence(0, orderProduct.product.productOptions[__${rowStat.index}__].optionQuantity)}"
+                                                th:text="${i}" th:value="${i}"></option>
+                                    </select>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <h2>Price</h2>
+                        <div class="order__total">
+                            <p th:text="#{label.totalPrice}"></p>
+                            <p class="order__total__price">0</p>
+                        </div>
+                        <input class="order__btn" disabled th:value="#{label.order}" type="submit">
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+</th:block>
+</html>

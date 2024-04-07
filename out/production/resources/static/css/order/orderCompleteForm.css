@@ -1,0 +1,47 @@
+.order__complete__container {
+  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+  width: 70vw;
+  height: 50vh;
+  margin: 5vh auto;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.order__complete__msgs {
+  margin: 10vh auto;
+  text-align: center;
+}
+
+.order__complete__msgs > p {
+  font-size: 1.6rem;
+}
+
+.order__complete__btns {
+  display: flex;
+}
+
+.order__complete__btns > a {
+  width: 15vw;
+  height: 4vh;
+  line-height: 4vh;
+  margin: 0 2vw;
+  background-color: var(--color-orage1);
+  text-align: center;
+  border-radius: 4px;
+}
+
+.order__complete__btns > a:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 800px) {
+  .order__complete__msgs > p {
+    font-size: 0.7rem;
+  }
+
+  .order__complete__btns > a {
+    font-size: 0.7rem;
+  }
+}

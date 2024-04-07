@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{common/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<th:block layout:fragment="content">
+    <link rel="stylesheet" th:href="@{/css/user/loginForm.css}"/>
+    <script defer th:src="@{/js/user/loginForm.js}"></script>
+    <main>
+        <section class="section" id="login">
+            <h1 class="section__title">・Login・</h1>
+            <div>ID : test@test.test PWD : test でログインできます。</div>
+            <div class="login__container">
+                <div class="login__left">
+                    <button class="login__btn-google" onclick="location.href='/oauth2/authorization/google'"><i
+                            class="fa-brands fa-google"></i> <span
+                            th:text="#{label.login.google}"></span></button>
+                </div>
+                <div class="login__dividingline"></div>
+                <div class="login__right">
+                    <form action="/users/login" class="login__form" method="post" th:object="${user}">
+                        <section th:if="${#fields.hasGlobalErrors()}">
+                            <p class="global-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+                        </section>
+                        <label th:for="userEmail" th:text="#{label.user.userEmail}"></label>
+                        <input th:errorclass="field-error" th:field="*{userEmail}" type="email">
+                        <div th:errors="*{userEmail}"></div>
+
+                        <label th:for="userPwd" th:text="#{label.user.userPwd}"></label>
+                        <input th:errorclass="field-error" th:field="*{userPwd}" type="password">
+                        <div th:errors="*{userPwd}"></div>
+                        <input class="login__btn-basic" th:value="#{label.login}" type="submit">
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+</th:block>
+</html>
